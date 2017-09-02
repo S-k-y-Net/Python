@@ -1,0 +1,23 @@
+import math
+
+
+class Mathematic:
+    def lessthanten(self, start=1, stop=2, step=1):
+        print(str([x for x in range(start, stop, step) if x < 5]))
+
+    def divisors(self, numb):
+        print(str([x for x in range(1,numb + 1) if numb % x == 0]))
+
+    def twolistoverlap(self, listone, listtwo):
+        if isinstance(listone, list) and isinstance(listtwo, list):
+            overlaps =list(set(listone) & set(listtwo))
+        else:
+            print("You don't give me a list!")
+        print(overlaps)
+
+
+a = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
+b = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+#myclass = Mathematic()
+#myclass.twolistoverlap(a,b)
+
