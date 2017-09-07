@@ -1,4 +1,5 @@
 import math;
+import random;
 
 class Mathematic:
     def lessthanten(self, start=1, stop=2, step=1):
@@ -26,24 +27,55 @@ class Mathematic:
     def evenElementOfList(self,mylist):
         print(str([x for x in mylist if x%2 == 0]))
 
-    def gameRockPaperScissiors(self, mystr):
-        print("Let's game Rock-Paper-Scissors! /n Type r - rock, p - paper and s - scissors. /n Now player 1 it's starting game /n")
-        boolvarA = True
-        while boolvarA:
-            player1 = input("Player 1: ")
-            if (player1 == "r") or (player1 == "R") or (player1 == "p") or (player1 == "P") or (player1 == "s") or (player1 == "S"):
-                boolvarA = False
-        boolvarB = True
-        while boolvarB:
-            player2 = input("Player 2: ")
-            if (player2 == "r") or (player2 == "R") or (player2 == "p") or (player2 == "P") or (player2 == "s") or (player2 == "S"):
-                boolvar = False
-        player2 = input("Player 2: ")
+    def gameRockPaperScissiors(self,):
+        print('''Please pick one:
+                    rock
+                    scissors
+                    paper''')
+
+        while True:
+            game_dict = {'rock': 1, 'scissors': 2, 'paper': 3} #from pythonpractice
+            player_a = str(input("Player a: "))
+            player_b = str(input("Player b: "))
+            a = game_dict.get(player_a)
+            b = game_dict.get(player_b)
+            dif = a - b
+
+            if dif in [-1, 2]:
+                print('player a wins.')
+                if str(input('Do you want to play another game, yes or no?\n')) == 'yes':
+                    continue
+                else:
+                    print('game over.')
+                    break
+            elif dif in [-2, 1]:
+                print('player b wins.')
+                if str(input('Do you want to play another game, yes or no?\n')) == 'yes':
+                    continue
+                else:
+                    print('game over.')
+                    break
+            else:
+                print('Draw.Please continue.')
+                print('')
+    def GuessingGameOne(self):
+        print("I generate a random number between 1 and 10, guess it!")
+        randNumber = round(random.random()*10);
+        userinput = int(input("? : "))
+        if randNumber == userinput:
+            print("Good you geues it! O_o")
+        elif (userinput >= randNumber + 5) or (userinput <= randNumber - 5):
+            print("Soo far T_T")
+        elif (userinput >= randNumber + 3) or (userinput <= randNumber - 3):
+            print("Not bad ^_^")
+        elif (userinput >= randNumber + 1) or (userinput <= randNumber - 1):
+            print("So near *_*")
+        print(str(randNumber))
 
 
 a = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
 b = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 myclass = Mathematic()
 #myclass.twolistoverlap(a,b)
-myclass.evenElementOfList(a)
+myclass.GuessingGameOne()
 
