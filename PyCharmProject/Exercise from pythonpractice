@@ -1,40 +1,43 @@
-import math;
-import random;
+import math
+import random
 
 class Mathematic:
-    def lessthanten(self, start=1, stop=2, step=1):
+    def less_than_ten(self, start=1, stop=2, step=1):
         print(str([x for x in range(start, stop, step) if x < 5]))
 
     def divisors(self, numb):
         print(str([x for x in range(1,numb + 1) if numb % x == 0]))
 
-    def twolistoverlap(self, listone, listtwo):
-        if isinstance(listone, list) and isinstance(listtwo, list):
-            overlaps =list(set(listone) & set(listtwo))
+    def two_list_overlap_first(self, list_one, list_two):
+        if isinstance(list_one, list) and isinstance(list_two, list):
+            overlaps =list(set(list_one) & set(list_two))
         else:
             print("You don't give me a list!")
         print(overlaps)
 
-    def palindromstring(self, mystr):
-        if mystr == "":
+    def palindrom_string(self, my_str):
+        # elegant solution  str(mystr) == str(mystr)[::-1] from stackoverflow
+        if my_str == "":
             print("You give me blank string!")
-        if isinstance(mystr, str): #elegant solution  str(mystr) == str(mystr)[::-1] from stackoverflow
-            revert = mystr[::-1]
-            if revert == mystr:
+        if isinstance(my_str, str):
+            revert = my_str[::-1]
+            if revert == my_str:
                 print("This is palindorm!")
             else:
                 print("it's not palindrom!")
-    def evenElementOfList(self,mylist):
-        print(str([x for x in mylist if x%2 == 0]))
 
-    def gameRockPaperScissiors(self,):
+    def even_element_of_list(self,my_list):
+        print(str([x for x in my_list if x%2 == 0]))
+
+    def game_rock_paper_scissiors(self,):
+        # from pythonpractice
         print('''Please pick one:
                     rock
                     scissors
                     paper''')
 
         while True:
-            game_dict = {'rock': 1, 'scissors': 2, 'paper': 3} #from pythonpractice
+            game_dict = {'rock': 1, 'scissors': 2, 'paper': 3}
             player_a = str(input("Player a: "))
             player_b = str(input("Player b: "))
             a = game_dict.get(player_a)
@@ -58,24 +61,37 @@ class Mathematic:
             else:
                 print('Draw.Please continue.')
                 print('')
-    def GuessingGameOne(self):
-        print("I generate a random number between 1 and 10, guess it!")
-        randNumber = round(random.random()*10);
-        userinput = int(input("? : "))
-        if randNumber == userinput:
-            print("Good you geues it! O_o")
-        elif (userinput >= randNumber + 5) or (userinput <= randNumber - 5):
-            print("Soo far T_T")
-        elif (userinput >= randNumber + 3) or (userinput <= randNumber - 3):
-            print("Not bad ^_^")
-        elif (userinput >= randNumber + 1) or (userinput <= randNumber - 1):
-            print("So near *_*")
-        print(str(randNumber))
 
+    def guessing_game_one(self):
+        print("I generate a random number between 1 and 10, guess it!")
+        rand_number = round(random.random()*10)
+        user_input = int(input("? : "))
+        if rand_number == user_input:
+            print("Good you geues it! O_o")
+        elif (user_input >= rand_number + 5) or (user_input <= rand_number - 5):
+            print("Soo far T_T")
+        elif (user_input >= rand_number + 3) or (user_input <= rand_number - 3):
+            print("Not bad ^_^")
+        elif (user_input >= rand_number + 1) or (user_input <= rand_number - 1):
+            print("So near *_*")
+        print(str(rand_number))
+
+    def two_list_overlap_second(self, my_first_list, my_second_list):
+        # elegant user solution result = [i for i in a if i in b]
+        if isinstance(my_first_list, list) and isinstance(my_first_list, list):
+            output_list = []
+            for x in range(my_first_list.__len__()):
+                for y in range(my_second_list.__len__()):
+                    if my_first_list[x] == my_second_list[y]:
+                        output_list.append(my_first_list[x])
+            output_list = set(output_list)
+        else:
+            print("You don't give me a two correct list!")
+        print(output_list)
 
 a = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
-b = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+b = [1, 2, 3, 4, 5, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 myclass = Mathematic()
-#myclass.twolistoverlap(a,b)
-myclass.GuessingGameOne()
+# myclass.twolistoverlap(a,b)
+myclass.two_list_overlap_second(a, b)
 
