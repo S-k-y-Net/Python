@@ -6,7 +6,9 @@ class Mathematic:
         print(str([x for x in range(start, stop, step) if x < 5]))
 
     def divisors(self, numb):
+        my_number = [x for x in range(1,numb + 1) if numb % x == 0]
         print(str([x for x in range(1,numb + 1) if numb % x == 0]))
+        return my_number
 
     def two_list_overlap_first(self, list_one, list_two):
         if isinstance(list_one, list) and isinstance(list_two, list):
@@ -89,9 +91,26 @@ class Mathematic:
             print("You don't give me a two correct list!")
         print(output_list)
 
+    def primer_function(self):
+        user_input = int(input("Type some number and I you tell is it a prime number: "))
+        local_numb = self.divisors(user_input)
+        if local_numb.__len__() > 2:
+            print("This is not prime number")
+        else:
+            print("This is a prime number!")
+        return local_numb
+
+    def list_ends(self, my_list):
+        if isinstance(my_list, list):
+            new_list = [my_list[0], (my_list[my_list.__len__() - 1])]
+            print(new_list)
+        else:
+            print("You don't give me a list!")
+        return  new_list
+
 a = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
 b = [1, 2, 3, 4, 5, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 myclass = Mathematic()
 # myclass.twolistoverlap(a,b)
-myclass.two_list_overlap_second(a, b)
+myclass.list_ends(a)
 
