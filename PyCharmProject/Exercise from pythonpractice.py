@@ -128,9 +128,19 @@ class Mathematic:
             print("You dont give me a list!")
         return new_list
 
+    def reverse_words(self):
+        # from pythonpractice   return ' '.join(input_words.split()[::-1])
+        input_words = input("Tel me somthing: ")
+        input_words = input_words.split(" ")
+        output_words = " ".join(input_words[::-1])
+        return output_words
+
+
+
 a = [1, 1, 2, 3, 5, 8, 13, 3, 21, 1, 34, 55, 89]
 b = [1, 2, 3, 4, 5, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 myclass = Mathematic()
 # myclass.twolistoverlap(a,b)
-print(myclass.my_own_set_function(a))
 
+c = myclass.reverse_words()
+print(c)
