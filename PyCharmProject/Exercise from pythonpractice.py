@@ -135,12 +135,16 @@ class Mathematic:
         output_words = " ".join(input_words[::-1])
         return output_words
 
-
+    def password_generator(self):
+        string_for_generate = "abcdefghijklmnopqrstuvwxyzABCDIFGHIJKLMNOPQRSTUVWXYZ0987654321"
+        string_for_generate = list(string_for_generate)
+        new_password = "".join(set(string_for_generate))
+        return new_password[:9:]
 
 a = [1, 1, 2, 3, 5, 8, 13, 3, 21, 1, 34, 55, 89]
 b = [1, 2, 3, 4, 5, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 myclass = Mathematic()
 # myclass.twolistoverlap(a,b)
 
-c = myclass.reverse_words()
+c = myclass.password_generator()
 print(c)
