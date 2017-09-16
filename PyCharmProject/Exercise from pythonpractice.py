@@ -1,5 +1,8 @@
 import math
+import re
 import random
+import requests
+import bs4
 
 class Mathematic:
     def less_than_ten(self, start=1, stop=2, step=1):
@@ -31,6 +34,57 @@ class Mathematic:
     def even_element_of_list(self,my_list):
         print(str([x for x in my_list if x%2 == 0]))
 
+    def two_list_overlap_second(self, my_first_list, my_second_list):
+        # elegant user solution result = [i for i in a if i in b]
+        if isinstance(my_first_list, list) and isinstance(my_first_list, list):
+            output_list = []
+            for x in range(my_first_list.__len__()):
+                for y in range(my_second_list.__len__()):
+                    if my_first_list[x] == my_second_list[y]:
+                        output_list.append(my_first_list[x])
+            output_list = set(output_list)
+        else:
+            print("You don't give me a two correct list!")
+        print(output_list)
+
+    def primer_function(self):
+        user_input = int(input("Type some number and I you tell is it a prime number: "))
+        local_numb = self.divisors(user_input)
+        if local_numb.__len__() > 2:
+            print("This is not prime number")
+        else:
+            print("This is a prime number!")
+        return local_numb
+
+    def list_ends(self, my_list):
+        if isinstance(my_list, list):
+            change_list = [my_list[0], (my_list[my_list.__len__() - 1])]
+            print(change_list)
+        else:
+            print("You don't give me a list!")
+        return change_list
+
+    def fibonacci_count(self):
+        numb = int(input("Tell me how many Fibonacci numbers generate?: "))
+        preindex = 0
+        index = 1
+        fibonacci_number = []
+        for i in range(numb):
+            preindex, index = index, preindex + index
+            fibonacci_number.append(preindex)
+        print(fibonacci_number)
+
+    def my_own_set_function(self, input_list):
+        if isinstance(input_list, list):
+            new_list = []
+            for y in input_list:
+               if y in input_list and y not in new_list:
+                   new_list.append(y)
+        else:
+            print("You dont give me a list!")
+        return new_list
+
+class SimpleGames:
     def game_rock_paper_scissiors(self,):
         # from pythonpractice
         print('''Please pick one:
@@ -78,56 +132,8 @@ class Mathematic:
             print("So near *_*")
         print(str(rand_number))
 
-    def two_list_overlap_second(self, my_first_list, my_second_list):
-        # elegant user solution result = [i for i in a if i in b]
-        if isinstance(my_first_list, list) and isinstance(my_first_list, list):
-            output_list = []
-            for x in range(my_first_list.__len__()):
-                for y in range(my_second_list.__len__()):
-                    if my_first_list[x] == my_second_list[y]:
-                        output_list.append(my_first_list[x])
-            output_list = set(output_list)
-        else:
-            print("You don't give me a two correct list!")
-        print(output_list)
 
-    def primer_function(self):
-        user_input = int(input("Type some number and I you tell is it a prime number: "))
-        local_numb = self.divisors(user_input)
-        if local_numb.__len__() > 2:
-            print("This is not prime number")
-        else:
-            print("This is a prime number!")
-        return local_numb
-
-    def list_ends(self, my_list):
-        if isinstance(my_list, list):
-            new_list = [my_list[0], (my_list[my_list.__len__() - 1])]
-            print(new_list)
-        else:
-            print("You don't give me a list!")
-        return new_list
-
-    def fibonacci_count(self):
-        numb = int(input("Tell me how many Fibonacci numbers generate?: "))
-        preindex = 0
-        index = 1
-        fibonacci_number = []
-        for i in range(numb):
-            preindex, index = index, preindex + index
-            fibonacci_number.append(preindex)
-        print(fibonacci_number)
-
-    def my_own_set_function(self, input_list):
-        if isinstance(input_list, list):
-            new_list = []
-            for y in input_list:
-               if y in input_list and y not in new_list:
-                   new_list.append(y)
-        else:
-            print("You dont give me a list!")
-        return new_list
-
+class SundriesMethods:
     def reverse_words(self):
         # from pythonpractice   return ' '.join(input_words.split()[::-1])
         input_words = input("Tel me somthing: ")
@@ -141,10 +147,29 @@ class Mathematic:
         new_password = "".join(set(string_for_generate))
         return new_password[:9:]
 
+    def site_parser(self):
+        ''' solution from python practice
+        base_url = 'http://www.nytimes.com'
+        r = requests.get(base_url)
+        soup = BeautifulSoup(r.text)
+
+        for story_heading in soup.find_all(class_="story-heading"):
+            if story_heading.a:
+                print(story_heading.a.text.replace("\n", " ").strip())
+            else:
+                print(story_heading.contents[0].strip())
+        '''
+        all_titles = []
+        get_html = bs4.BeautifulSoup(requests.get("http://www.nytimes.com/").text, 'html.parser')
+        for titles in get_html.find_all("h2", {'class' : 'story-heading'}):
+            combined_pat = r'|'.join(('\n', '\n\n', '  '))
+            all_titles.append(re.sub(combined_pat, '', titles.text))
+        print(all_titles)
+
 a = [1, 1, 2, 3, 5, 8, 13, 3, 21, 1, 34, 55, 89]
 b = [1, 2, 3, 4, 5, 5, 6, 7, 8, 9, 10, 11, 12, 13]
-myclass = Mathematic()
-# myclass.twolistoverlap(a,b)
+myclass = SundriesMethods()
 
-c = myclass.password_generator()
+
+c = myclass.site_parser()
 print(c)
