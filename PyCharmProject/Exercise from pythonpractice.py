@@ -132,6 +132,22 @@ class SimpleGames:
             print("So near *_*")
         print(str(rand_number))
 
+    def cows_and_bulls_game(self):
+        random_generate = random.sample(range(10),4)
+        cows = 0
+        bulls = 0
+        input_number = list(map(int, input("Welcome to the Cows and Bulls game! \nEnter 4 digit numbers: ")))
+        if input_number.__len__() != 4:
+            print("You give me wrong numbers, make sure you print 4 digit numbers")
+            exit()
+        else:
+            for x in range(random_generate.__len__()):
+                if random_generate[x] == input_number[x]:
+                    cows += 1
+            if list(set(random_generate) & set(input_number)) != []:
+                bulls = list(set(random_generate) & set(input_number)).__len__() - cows
+        print("cows: " + str(cows) + " bulls: " + str(bulls))
+        print(random_generate)
 
 class SundriesMethods:
     def reverse_words(self):
@@ -166,10 +182,12 @@ class SundriesMethods:
             all_titles.append(re.sub(combined_pat, '', titles.text))
         print(all_titles)
 
+
 a = [1, 1, 2, 3, 5, 8, 13, 3, 21, 1, 34, 55, 89]
 b = [1, 2, 3, 4, 5, 5, 6, 7, 8, 9, 10, 11, 12, 13]
-myclass = SundriesMethods()
+#myclass = SundriesMethods()
+myclass = SimpleGames()
 
 
-c = myclass.site_parser()
-print(c)
+c = myclass.cows_and_bulls_game()
+#print(c)
