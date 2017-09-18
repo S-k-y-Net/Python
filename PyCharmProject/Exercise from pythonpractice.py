@@ -163,6 +163,22 @@ class SundriesMethods:
         new_password = "".join(set(string_for_generate))
         return new_password[:9:]
 
+
+
+class WebManipulations:
+    def get_titles_urls(self):
+        url = "https://habrahabr.ru/"
+        get_html = bs4.BeautifulSoup(requests.get(url).text, 'html.parser')
+        titles = []
+        urls = []
+        for titles_text in get_html.find_all('h2', {'class' : 'post_title'}):
+            combined_pat = r'|'.join(('\n', '\n\n', '  '))
+            titles.append(re.sub(combined_pat, '', titles_text.text))
+        for urls_of_titles in get_html.find_all('a', {'class' : 'post_title_link'}, href=True):
+            urls.append(urls_of_titles['href'])
+        print(titles)
+        print(urls)
+
     def site_parser(self):
         ''' solution from python practice
         base_url = 'http://www.nytimes.com'
@@ -177,7 +193,7 @@ class SundriesMethods:
         '''
         all_titles = []
         get_html = bs4.BeautifulSoup(requests.get("http://www.nytimes.com/").text, 'html.parser')
-        for titles in get_html.find_all("h2", {'class' : 'story-heading'}):
+        for titles in get_html.find_all("h2", {'class': 'story-heading'}):
             combined_pat = r'|'.join(('\n', '\n\n', '  '))
             all_titles.append(re.sub(combined_pat, '', titles.text))
         print(all_titles)
@@ -186,8 +202,8 @@ class SundriesMethods:
 a = [1, 1, 2, 3, 5, 8, 13, 3, 21, 1, 34, 55, 89]
 b = [1, 2, 3, 4, 5, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 #myclass = SundriesMethods()
-myclass = SimpleGames()
+#myclass = SimpleGames()
+myclass = WebManipulations()
 
-
-c = myclass.cows_and_bulls_game()
+c = myclass.get_titles_urls()
 #print(c)
