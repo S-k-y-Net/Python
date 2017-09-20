@@ -1,8 +1,9 @@
 import math
 import re
 import random
-#import requests
-#import bs4
+import requests
+import bs4
+
 
 class Mathematic:
     def less_than_ten(self, start=1, stop=2, step=1):
@@ -184,19 +185,27 @@ class SundriesMethods:
 
 
 class WebManipulations:
-    '''  def get_titles_urls(self):
+     def get_titles_urls(self):
         url = "https://habrahabr.ru/"
-        get_html = bs4.BeautifulSoup(requests.get(url).text, 'html.parser')
-        titles = []
+        get_html = bs4.BeautifulSoup(requests.get(url).text, 'html5lib')
         urls = []
-        for titles_text in get_html.find_all('h2', {'class' : 'post_title'}):
+        titles = []
+        for titles_text in get_html.find_all("h2", {'class': 'post__title'}):
             combined_pat = r'|'.join(('\n', '\n\n', '  '))
             titles.append(re.sub(combined_pat, '', titles_text.text))
-        for urls_of_titles in get_html.find_all('a', {'class' : 'post_title_link'}, href=True):
+        for urls_of_titles in get_html.find_all("a", {'class': 'post__title_link'}, href=True):
             urls.append(urls_of_titles['href'])
-        print(titles)
-        print(urls)
-         solution from python practice
+        titles_and_urls_dict = dict(zip(titles,urls))
+        return titles_and_urls_dict
+
+     def site_parser(self):
+        all_titles = []
+        get_html = bs4.BeautifulSoup(requests.get("http://www.nytimes.com/").text, 'html.parser')
+        for titles in get_html.find_all("h2", {'class': 'story-heading'}):
+            combined_pat = r'|'.join(('\n', '\n\n', '  '))
+            all_titles.append(re.sub(combined_pat, '', titles.text))
+        print(all_titles)
+     ''' solution from python practice
         base_url = 'http://www.nytimes.com'
         r = requests.get(base_url)
         soup = BeautifulSoup(r.text)
@@ -205,24 +214,15 @@ class WebManipulations:
             if story_heading.a:
                 print(story_heading.a.text.replace("\n", " ").strip())
             else:
-                print(story_heading.contents[0].strip()) '''
-
-    '''def site_parser(self):
-        all_titles = []
-        get_html = bs4.BeautifulSoup(requests.get("http://www.nytimes.com/").text, 'html.parser')
-        for titles in get_html.find_all("h2", {'class': 'story-heading'}):
-            combined_pat = r'|'.join(('\n', '\n\n', '  '))
-            all_titles.append(re.sub(combined_pat, '', titles.text))
-        print(all_titles)'''
-
+                print(story_heading.contents[0].strip())'''
 
 a = [1, 1, 2, 3, 5, 8, 13, 3, 21, 1, 34, 55, 89]
 b = [1, 2, 3, 4, 5, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 d = []
 #myclass = SundriesMethods()
 #myclass = SimpleGames()
-#myclass = WebManipulations()
-myclass = Mathematic()
+myclass = WebManipulations()
+#myclass = Mathematic()
 
-c = myclass.binary_search(d)
+c = myclass.get_titles_urls()
 print(c)
