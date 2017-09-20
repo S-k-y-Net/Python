@@ -1,8 +1,8 @@
 import math
 import re
 import random
-import requests
-import bs4
+#import requests
+#import bs4
 
 class Mathematic:
     def less_than_ten(self, start=1, stop=2, step=1):
@@ -83,6 +83,24 @@ class Mathematic:
         else:
             print("You dont give me a list!")
         return new_list
+
+    def binary_search(self, input_list = [], search_element = 0):
+        if input_list == [] or search_element == None:
+            return None
+        else:
+            first = input_list[0]
+            last = input_list.__len__() - 1
+
+            while first < last:
+                mid = round(first + (last - first) / 2)
+                if (search_element <= input_list[mid]):
+                    last = mid
+                else:
+                    first = mid + 1
+            if (input_list[last] == search_element):
+                return True
+            else:
+                return False
 
 class SimpleGames:
     def game_rock_paper_scissiors(self,):
@@ -166,7 +184,7 @@ class SundriesMethods:
 
 
 class WebManipulations:
-    def get_titles_urls(self):
+    '''  def get_titles_urls(self):
         url = "https://habrahabr.ru/"
         get_html = bs4.BeautifulSoup(requests.get(url).text, 'html.parser')
         titles = []
@@ -178,9 +196,7 @@ class WebManipulations:
             urls.append(urls_of_titles['href'])
         print(titles)
         print(urls)
-
-    def site_parser(self):
-        ''' solution from python practice
+         solution from python practice
         base_url = 'http://www.nytimes.com'
         r = requests.get(base_url)
         soup = BeautifulSoup(r.text)
@@ -189,21 +205,24 @@ class WebManipulations:
             if story_heading.a:
                 print(story_heading.a.text.replace("\n", " ").strip())
             else:
-                print(story_heading.contents[0].strip())
-        '''
+                print(story_heading.contents[0].strip()) '''
+
+    '''def site_parser(self):
         all_titles = []
         get_html = bs4.BeautifulSoup(requests.get("http://www.nytimes.com/").text, 'html.parser')
         for titles in get_html.find_all("h2", {'class': 'story-heading'}):
             combined_pat = r'|'.join(('\n', '\n\n', '  '))
             all_titles.append(re.sub(combined_pat, '', titles.text))
-        print(all_titles)
+        print(all_titles)'''
 
 
 a = [1, 1, 2, 3, 5, 8, 13, 3, 21, 1, 34, 55, 89]
 b = [1, 2, 3, 4, 5, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+d = []
 #myclass = SundriesMethods()
 #myclass = SimpleGames()
-myclass = WebManipulations()
+#myclass = WebManipulations()
+myclass = Mathematic()
 
-c = myclass.get_titles_urls()
-#print(c)
+c = myclass.binary_search(d)
+print(c)
