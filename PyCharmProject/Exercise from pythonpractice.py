@@ -204,7 +204,7 @@ class WebManipulations:
         for titles in get_html.find_all("h2", {'class': 'story-heading'}):
             combined_pat = r'|'.join(('\n', '\n\n', '  '))
             all_titles.append(re.sub(combined_pat, '', titles.text))
-        print(all_titles)
+        return  all_titles
      ''' solution from python practice
         base_url = 'http://www.nytimes.com'
         r = requests.get(base_url)
@@ -215,6 +215,12 @@ class WebManipulations:
                 print(story_heading.a.text.replace("\n", " ").strip())
             else:
                 print(story_heading.contents[0].strip())'''
+     def write_result_to_file(self):
+        text_data = self.site_parser()
+        with open("titles_text.txt","wb") as file:
+            for items in text_data:
+                file.write(items.encode("utf-8") + "\n".encode("utf-8"))
+            file.close()
 
 a = [1, 1, 2, 3, 5, 8, 13, 3, 21, 1, 34, 55, 89]
 b = [1, 2, 3, 4, 5, 5, 6, 7, 8, 9, 10, 11, 12, 13]
@@ -224,5 +230,5 @@ d = []
 myclass = WebManipulations()
 #myclass = Mathematic()
 
-c = myclass.get_titles_urls()
+c = myclass.write_result_to_file()
 print(c)
