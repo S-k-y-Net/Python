@@ -221,6 +221,19 @@ class WebManipulations:
             for items in text_data:
                 file.write(items.encode("utf-8") + "\n".encode("utf-8"))
             file.close()
+     def read_from_file(self):
+        _file = "C:/Max/nameslist.txt"
+        with open(_file) as file:
+            return len(file.readlines())
+
+     def two_files_overlapping(self, file_one, file_two):
+        with open(file_one, 'r') as _file_one:
+            _text_one = set(map(lambda s: s.strip(),_file_one.readlines()))
+        with open(file_two, 'r') as _file_two:
+            _text_two = set(map(lambda s: s.strip(),_file_two.readlines()))
+        intersections = _text_one.intersection(_text_two)
+        return sorted([int(x) for x in intersections])
+
 
 a = [1, 1, 2, 3, 5, 8, 13, 3, 21, 1, 34, 55, 89]
 b = [1, 2, 3, 4, 5, 5, 6, 7, 8, 9, 10, 11, 12, 13]
@@ -230,5 +243,5 @@ d = []
 myclass = WebManipulations()
 #myclass = Mathematic()
 
-c = myclass.write_result_to_file()
+c = myclass.two_files_overlapping("C:/Max/primenumbers.txt", "C:/Max/happynumbers.txt")
 print(c)
