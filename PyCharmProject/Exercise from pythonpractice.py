@@ -151,6 +151,30 @@ class SimpleGames:
             print("So near *_*")
         print(str(rand_number))
 
+    def guessing_game_two(self):
+        _list = []
+        print("Think about some number between 1-100 and I guess it: ")
+        print(input("Ready?"))
+        a = 0
+        b = 100
+        while b != 0:
+            guess_number = round(a + random.random()*b)
+            if not guess_number  in _list:
+                _list.append(guess_number)
+                print("You guess " + str(guess_number) + "?")
+            else:
+                continue
+            player_answer = input()
+            if player_answer == "Yes":
+                print("It takes " + str(len(_list)) + " times.")
+                break
+            if player_answer == "too high":
+                b = guess_number
+            if player_answer == "too low":
+                a = guess_number
+                b = 100 - guess_number
+
+
     def cows_and_bulls_game(self):
         random_generate = random.sample(range(10),4)
         cows = 0
@@ -167,6 +191,14 @@ class SimpleGames:
                 bulls = list(set(random_generate) & set(input_number)).__len__() - cows
         print("cows: " + str(cows) + " bulls: " + str(bulls))
         print(random_generate)
+
+    def simple_game_board(self):
+         print("What size game board you want to draw? \n")
+         game_board_size = int(input())
+         for i in range(game_board_size):
+            print(" ---"*game_board_size)
+            print("|   "*(game_board_size + 1))
+         print(" ---" * game_board_size)
 
 class SundriesMethods:
     def reverse_words(self):
@@ -239,9 +271,9 @@ a = [1, 1, 2, 3, 5, 8, 13, 3, 21, 1, 34, 55, 89]
 b = [1, 2, 3, 4, 5, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 d = []
 #myclass = SundriesMethods()
-#myclass = SimpleGames()
-myclass = WebManipulations()
+myclass = SimpleGames()
+#myclass = WebManipulations()
 #myclass = Mathematic()
 
-c = myclass.two_files_overlapping("C:/Max/primenumbers.txt", "C:/Max/happynumbers.txt")
-print(c)
+c = myclass.guessing_game_two()
+#print(c)
