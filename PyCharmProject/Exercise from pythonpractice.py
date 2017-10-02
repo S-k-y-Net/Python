@@ -3,6 +3,7 @@ import re
 import random
 import requests
 import bs4
+import numpy
 
 
 class Mathematic:
@@ -174,7 +175,6 @@ class SimpleGames:
                 a = guess_number
                 b = 100 - guess_number
 
-
     def cows_and_bulls_game(self):
         random_generate = random.sample(range(10),4)
         cows = 0
@@ -199,6 +199,22 @@ class SimpleGames:
             print(" ---"*game_board_size)
             print("|   "*(game_board_size + 1))
          print(" ---" * game_board_size)
+
+    def check_tictactoe(self):
+        game_status = [[2, 2, 5], 
+                       [7, 5, 6],
+                       [5, 8, 1]]
+        n = 3
+        transpose_game = numpy.transpose(game_status)
+        for i in range(0,3):
+            if len(set(game_status[i])) == 1 and game_status[i][0] != 0:
+                return game_status[i][0]
+            if len(set(transpose_game[i])) == 1 and transpose_game[i][0] != 0:
+                return transpose_game[i][0]
+            if len(set(numpy.diagonal(game_status))) == 1:
+                return numpy.diagonal(game_status)[0]    
+            if len(set(numpy.diag(numpy.fliplr(game_status)))) == 1:
+                return numpy.diag(numpy.fliplr(game_status))[0]
 
 class SundriesMethods:
     def reverse_words(self):
@@ -275,5 +291,5 @@ myclass = SimpleGames()
 #myclass = WebManipulations()
 #myclass = Mathematic()
 
-c = myclass.guessing_game_two()
-#print(c)
+c = myclass.check_tictactoe()
+print(c)
