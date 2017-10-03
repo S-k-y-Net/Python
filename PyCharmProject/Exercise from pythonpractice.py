@@ -200,21 +200,40 @@ class SimpleGames:
             print("|   "*(game_board_size + 1))
          print(" ---" * game_board_size)
 
-    def check_tictactoe(self):
-        game_status = [[2, 2, 5], 
-                       [7, 5, 6],
-                       [5, 8, 1]]
-        n = 3
+    def check_tictactoe(self,game_status = [], n = 0):
+        # game_status = [[2, 2, 5], 
+        #                [7, 5, 6],
+        #                [5, 8, 1]]
+        # n = 3
         transpose_game = numpy.transpose(game_status)
-        for i in range(0,3):
+        for i in range(0,n):
             if len(set(game_status[i])) == 1 and game_status[i][0] != 0:
                 return game_status[i][0]
             if len(set(transpose_game[i])) == 1 and transpose_game[i][0] != 0:
                 return transpose_game[i][0]
-            if len(set(numpy.diagonal(game_status))) == 1:
+            if len(set(numpy.diagonal(game_status))) == 1 and game_status[n - 1][0] != 0:
                 return numpy.diagonal(game_status)[0]    
-            if len(set(numpy.diag(numpy.fliplr(game_status)))) == 1:
+            if len(set(numpy.diag(numpy.fliplr(game_status)))) == 1 and game_status[0][n - 1] != 0:
                 return numpy.diag(numpy.fliplr(game_status))[0]
+
+    def draw_tictactoe(self, board = []):
+        board = [[0,0,0],
+                 [0,0,0],
+                 [0,0,0]]
+        n = 3
+        print("Let's play game! Print coordinate like (row,col) \n player 1")         
+        while self.check_tictactoe(board, n) is None:
+            input_player_one = input()
+            _a = input_player_one.split(",")
+            board[int(_a[0]) - 1][int(_a[1]) - 1] = "x"
+            print(board)
+            print("player 2")
+            input_player_two = input()
+            a = input_player_two.split(',')
+            board[int(a[0]) - 1][int(a[1]) - 1] = "o"
+            print(board)
+        return self.check_tictactoe(board, n)
+
 
 class SundriesMethods:
     def reverse_words(self):
@@ -291,5 +310,5 @@ myclass = SimpleGames()
 #myclass = WebManipulations()
 #myclass = Mathematic()
 
-c = myclass.check_tictactoe()
+c = myclass.draw_tictactoe()
 print(c)
