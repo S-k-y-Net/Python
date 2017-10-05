@@ -103,6 +103,15 @@ class Mathematic:
                 return True
             else:
                 return False
+    def quick_sort(self, array):
+        if array: return self.quick_sort([x for x in array if x<array[0]]) + [x for x in array if x==array[0]] + self.quick_sort([x for x in array if x>array[0]])
+        return []
+
+    def max_min_element(self,array):
+        b = self.quick_sort(array)
+        max = b[0]
+        min = b[len(b) - 1]
+        return max, min
 
 class SimpleGames:
     def game_rock_paper_scissiors(self,):
@@ -306,9 +315,9 @@ a = [1, 1, 2, 3, 5, 8, 13, 3, 21, 1, 34, 55, 89]
 b = [1, 2, 3, 4, 5, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 d = []
 #myclass = SundriesMethods()
-myclass = SimpleGames()
+#myclass = SimpleGames()
 #myclass = WebManipulations()
-#myclass = Mathematic()
+myclass = Mathematic()
 
-c = myclass.draw_tictactoe()
+c = myclass.max_min_element(a)
 print(c)
