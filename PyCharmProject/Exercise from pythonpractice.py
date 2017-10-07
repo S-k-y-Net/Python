@@ -201,9 +201,9 @@ class SimpleGames:
         print("cows: " + str(cows) + " bulls: " + str(bulls))
         print(random_generate)
 
-    def simple_game_board(self):
-         print("What size game board you want to draw? \n")
-         game_board_size = int(input())
+    def tictactoe_board(self, n):
+         #print("What size game board you want to draw? \n")
+         game_board_size = n
          for i in range(game_board_size):
             print(" ---"*game_board_size)
             print("|   "*(game_board_size + 1))
@@ -225,22 +225,22 @@ class SimpleGames:
             if len(set(numpy.diag(numpy.fliplr(game_status)))) == 1 and game_status[0][n - 1] != 0:
                 return numpy.diag(numpy.fliplr(game_status))[0]
 
-    def draw_tictactoe(self, board = []):
-        board = [[0,0,0],
-                 [0,0,0],
-                 [0,0,0]]
-        n = 3
-        print("Let's play game! Print coordinate like (row,col) \n player 1")         
+    def base_tictactoe(self, board = [], n = 3):
+        # board = [[0,0,0],
+        #          [0,0,0],
+        #          [0,0,0]]
+        # n = 3
+        #print("Let's play game! Print coordinate like (row,col) \n player 1")
         while self.check_tictactoe(board, n) is None:
             input_player_one = input()
             _a = input_player_one.split(",")
             board[int(_a[0]) - 1][int(_a[1]) - 1] = "x"
-            print(board)
+            #print(board)
             print("player 2")
             input_player_two = input()
             a = input_player_two.split(',')
             board[int(a[0]) - 1][int(a[1]) - 1] = "o"
-            print(board)
+            print("player 1")
         return self.check_tictactoe(board, n)
 
 

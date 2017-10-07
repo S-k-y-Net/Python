@@ -1,0 +1,12 @@
+
+def draw_board(n, id):
+    out_list = []
+    line_list = [" ---" for x in range(n)]
+    slash_list = ["|    " for x in range(n)]
+    line_list.append("\n")
+    slash_list.append("\n")
+    out_list = (line_list + slash_list) * n + line_list
+    return out_list
+b = draw_board(4,1)
+for i in b:
+    print(i, end = '')
