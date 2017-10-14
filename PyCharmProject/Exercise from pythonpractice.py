@@ -258,6 +258,19 @@ class SundriesMethods:
         new_password = "".join(set(string_for_generate))
         return new_password[:9:]
 
+    def birthday_dictioanry(self):
+        birth_dict = {"Archi" : "2 may 1988",
+                      "Robert" : "3 April 1970",
+                      "Charly" : "1 Jenuary 1995"
+                      }
+        print("Welcome to dictionary of birthdays: I know this persons")
+        for i in birth_dict.keys():
+            print(i)
+        user_input = input("Whoes birthday you want know? \n")
+        if user_input in birth_dict.keys():
+            print("The birthday of " + user_input +birth_dict[i])
+        else:
+            print("Sorry I don't know who is this person '" +  user_input + "'")
 
 
 class WebManipulations:
@@ -314,10 +327,10 @@ class WebManipulations:
 a = [1, 1, 2, 3, 5, 8, 13, 3, 21, 1, 34, 55, 89]
 b = [1, 2, 3, 4, 5, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 d = []
-#myclass = SundriesMethods()
+myclass = SundriesMethods()
 #myclass = SimpleGames()
 #myclass = WebManipulations()
-myclass = Mathematic()
+#myclass = Mathematic()
 
-c = myclass.max_min_element(a)
-print(c)
+c = myclass.birthday_dictioanry()
+#print(c)

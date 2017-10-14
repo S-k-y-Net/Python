@@ -2,11 +2,18 @@
 def draw_board(n, id):
     out_list = []
     line_list = [" ---" for x in range(n)]
-    slash_list = ["|    " for x in range(n)]
+    slash_list = ["|   " for x in range(n + 1)]
     line_list.append("\n")
     slash_list.append("\n")
     out_list = (line_list + slash_list) * n + line_list
     return out_list
-b = draw_board(4,1)
-for i in b:
+n = 5
+a = 1
+b = 1
+c = draw_board(n,1)
+#b[5].replace(" ", "")
+print(c[n*a + n +b])
+c[7*n + 10] = "| X "
+
+for i in c:
     print(i, end = '')
