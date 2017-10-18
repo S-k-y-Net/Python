@@ -271,6 +271,35 @@ class SundriesMethods:
             print("The birthday of " + user_input +birth_dict[i])
         else:
             print("Sorry I don't know who is this person '" +  user_input + "'")
+    def json_birthday(file):
+        with open(file, 'r') as data_file:
+            data = json.load(data_file)
+            print("Welcome to dictionary of birthdays: I know this persons")
+            for i in data.keys():
+                print(i)
+            user_input = input("Whoes birthday you want know? \n")
+            if user_input in data.keys():
+                print("The birthday of " + user_input + ' ' + data[i])
+            else:
+                print("Sorry I don't know who is this person '" +  user_input + "'")
+            data_file.close()
+        adding = input("Do you want add a new line in birthday dict? (Y,N) ")
+        if adding.upper() == "Y":
+            print("Print 'exit' for finishing!")
+            _dict = data
+            def adding_person():
+                name = input("Enter person name: ")
+                if 'exit' == name:
+                    return _dict
+                date = input("Enter person birthday date: ")
+                if 'exit' == date:
+                    return _dict
+                else:
+                    _dict[name] = date
+                    adding_person()
+            adding_person()
+        with open(file , 'w') as write_file:
+            json.dump(_dict,write_file)
 
 
 class WebManipulations:
