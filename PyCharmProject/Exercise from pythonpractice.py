@@ -2,6 +2,7 @@ import math
 import re
 import random
 import requests
+import json
 import bs4
 import numpy
 
@@ -272,8 +273,30 @@ class SundriesMethods:
         else:
             print("Sorry I don't know who is this person '" +  user_input + "'")
     def json_birthday(file):
+        num_to_string = {
+        '01': "January",
+        '02': "February",
+        '03': "March", 
+        '04': "April",
+        '05': "May",
+        '06': "June",
+        '07': "July",
+        '08': "August",
+        '09': "September",
+        '10': "October",
+        '11': "November",
+        '12': "December"
+        }
         with open(file, 'r') as data_file:
+            month_list = []
             data = json.load(data_file)
+            for i in data.keys():
+                a_list = []
+                data_list = data[i].split('.')
+                for x in data_list:
+                    a_list.append(x)
+                month_list.append(num_to_string[a_list[1]])
+            print(Counter(month_list))
             print("Welcome to dictionary of birthdays: I know this persons")
             for i in data.keys():
                 print(i)
@@ -283,6 +306,7 @@ class SundriesMethods:
             else:
                 print("Sorry I don't know who is this person '" +  user_input + "'")
             data_file.close()
+
         adding = input("Do you want add a new line in birthday dict? (Y,N) ")
         if adding.upper() == "Y":
             print("Print 'exit' for finishing!")
