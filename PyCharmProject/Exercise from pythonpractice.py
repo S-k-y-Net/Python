@@ -5,6 +5,11 @@ import requests
 import json
 import bs4
 import numpy
+from bokeh.io import show, output_file
+from bokeh.models import ColumnDataSource
+from bokeh.palettes import Spectral6
+from bokeh.plotting import figure
+from bokeh.transform import factor_cmap
 
 
 class Mathematic:
@@ -287,6 +292,7 @@ class SundriesMethods:
         '11': "November",
         '12': "December"
         }
+        global month_list
         with open(file, 'r') as data_file:
             month_list = []
             data = json.load(data_file)
@@ -306,6 +312,27 @@ class SundriesMethods:
             else:
                 print("Sorry I don't know who is this person '" +  user_input + "'")
             data_file.close()
+        output_file("bar_colormapped.html")
+        b_list = []
+        for i in data.keys():
+            data_ls = data[i].split('.')
+            b_list.append(data_ls[1])
+
+        list_b = b_list
+        print(month_list)
+        list_a = month_list
+        source = ColumnDataSource(data=dict(list_a = list_a, list_b = list_b))
+        p = figure(x_range=list_a, plot_height=350, toolbar_location=None, title="Fruit Counts")
+        p.vbar(x='list_a', top='list_b', width=1.5, source=source, legend="list_a",
+           line_color='white', fill_color=factor_cmap('list_a', palette=Spectral6, factors=list_a))
+
+        p.xgrid.grid_line_color = None
+        p.y_range.start = 0
+        p.y_range.end = 9
+        p.legend.orientation = "horizontal"
+        p.legend.location = "top_center"
+
+        show(p)
 
         adding = input("Do you want add a new line in birthday dict? (Y,N) ")
         if adding.upper() == "Y":
@@ -322,8 +349,8 @@ class SundriesMethods:
                     _dict[name] = date
                     adding_person()
             adding_person()
-        with open(file , 'w') as write_file:
-            json.dump(_dict,write_file)
+            with open(file , 'w') as write_file:
+                json.dump(_dict,write_file)
 
 
 class WebManipulations:
