@@ -108,3 +108,39 @@ def whether_1000_2000_100(numb):
 	else:
 		return False
 #print(whether_1000_2000_100(1190))
+
+#18
+def sum_of_three(one,two,three):
+	return 3*(one + two + three) if one == two == three else one + two + three
+#print(sum_of_three(2,2,-2))
+
+#19
+def add_is_function(mystr):
+	return mystr if mystr[0:2:1] == 'Is' else 'Is ' + mystr
+#print(add_is_function("I Some sting"))
+
+#20
+def print_n_copies(n,string):
+	return n*(string+"\n")
+#print(print_n_copies(2,"t  22 ff as"))
+
+#21
+def odd_or_even():
+	user_input = int(input('Enter number: '))
+	return 'Even' if user_input%2 == 0 else 'Odd'
+#print(odd_or_even())
+
+#22
+def count_four(_list):
+	return len([x for x in _list if x == 4])
+#print(count_four([4,2,3,4,5,1,4,3,4]))
+
+#23
+def first_two_characters_copies(n,_str):
+	return n*_str[0:2:1] if _str.__len__() > 2 else n*_str
+#print(first_two_characters_copies(3,'taae'))
+
+#24
+def vowel_or_not(_srt):
+	return True if _srt in 'aeiou' else False
+#print(vowel_or_not('a'))
