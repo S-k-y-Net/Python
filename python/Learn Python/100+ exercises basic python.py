@@ -144,3 +144,45 @@ def first_two_characters_copies(n,_str):
 def vowel_or_not(_srt):
 	return True if _srt in 'aeiou' else False
 #print(vowel_or_not('a'))
+
+#25
+def assert_value_in_data(value,_data):
+	return True if value in _data else False
+#print(assert_value_in_data(5,[5,2,3,1]))
+
+#26
+def simple_histogram(_data):
+	_list = []
+	for i in _data:
+		n = '*'*i
+		_list.append(n)
+	return _list
+#print(*simple_histogram([2,5,1,20]), sep = '\n')
+
+#27
+def list_to_string(_list):
+	return ''.join((str(x) for x in _list))
+#print(list_to_string(['ga','2','23']))
+
+#28
+def even_number_until_237(_list):
+	for x in _list:
+		if x%2 == 0 and x <= 237: 
+			print(x)
+numbers = [    
+    386, 462, 47, 418, 907, 344, 236, 375, 823, 566, 597, 978, 328, 615, 953, 345, 
+    399, 162, 758, 219, 918, 237, 412, 566, 826, 248, 866, 950, 626, 949, 687, 217, 
+    815, 67, 104, 58, 512, 24, 892, 894, 767, 553, 81, 379, 843, 831, 445, 742, 717, 
+    958,743, 527
+    ]
+#even_number_until_237(numbers)
+
+#29
+def set_colors(list_one, list_two):
+	return set(set(list_one)^set(list_two))
+#print(set_colors(["White", "Black", "Red"],["Red", "White", "Green"]))
+
+#30
+def triangle_area(base,height):
+	return 1/2*(base * height)
+#print(triangle_area(1,1))
