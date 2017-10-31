@@ -186,3 +186,58 @@ def set_colors(list_one, list_two):
 def triangle_area(base,height):
 	return 1/2*(base * height)
 #print(triangle_area(1,1))
+
+#31
+def evklid_algorithm(a,b):
+	while True:
+		if a > b:
+			if 0 == a%b:
+				return b
+			else:
+				a = a%b
+		else:
+			if 0 == b%a:
+				return a
+			else:
+				b = b%a
+#print(evklid_algorithm(320,115))
+
+#32
+def lcm(a,b):
+	return 	abs(a*b)/evklid_algorithm(a,b)
+#print(lcm(30,18))
+
+#33
+def sum_of_three_special(a,b,c):
+	return 0 if c == a or b == c or b == a else a + b + c
+#print(sum_of_three_special(5,5,3))
+
+#34
+def sum_of_two_special(a,b):
+	return 20 if 15 <= a + b <= 20 else a + b
+#print(sum_of_two_special(9,9)) 
+
+#35
+def eq_sum_diff_for_five(a,b):
+	return True if a + b == 5 or abs(a - b) == 5 or a == 5 or b == 5 else False 
+#print(eq_sum_diff_for_five(-1,6))
+
+#36
+def if_int_check(a,b):
+	return a + b  if isinstance(a,int) and isinstance(b, int) else print("ERROR")
+#print(if_int_check(5,'a'))
+
+#37
+def person_details(age,name,address):
+	return age + '\n' + name + '\n' + address
+#print(person_details('43','adsd','rereremott 123')) 
+
+#38
+def simple_solution_of_formula(x,y):
+	return (x + y)**2
+#print(simple_solution_of_formula(4,3))
+
+#39
+def future_value(amount, rate_of_return, number_of_period):
+	return amount*(1 + 0.01*rate_of_return)**number_of_period
+#print(future_value(20000,3.5,7))
