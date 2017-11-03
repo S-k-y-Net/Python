@@ -1,7 +1,21 @@
+from __future__ import print_function
+import cProfile
+import socket
+import ipaddress
+import multiprocessing
+import site
+import struct
 import os
 import sys
 import datetime
 import calendar
+import math
+import platform
+import subprocess
+import getpass
+import time
+from ctypes import windll, create_string_buffer
+
 
 #2
 def get_python_version():
@@ -241,3 +255,176 @@ def simple_solution_of_formula(x,y):
 def future_value(amount, rate_of_return, number_of_period):
 	return amount*(1 + 0.01*rate_of_return)**number_of_period
 #print(future_value(20000,3.5,7))
+
+#40
+def distance_between_two_points(a,b):
+	return math.sqrt((a[0] - b[0])**2 + (a[1]-b[1])**2)
+#print(distance_between_two_points((5,2),(3,20)))
+
+#41.1
+def if_file_exist(_filepath):
+	try:
+		open(_filepath)
+	except Exception as e:
+		print(e)
+	else:
+		print('file open successfully')
+
+#if_file_exist('file.txt')
+
+#41.2
+def if_file_exist2(_filepath):
+	return os.path.isfile(_filepath)	
+#print(if_file_exist2('te.xtx'))
+
+#42.1
+def os_architecture():
+	return platform.platform()
+#print(os_architecture())	
+#42.2
+def os_architecture2():
+	return struct.calcsize("P") # 'P' - pointer
+#print(os_architecture2())
+
+#43
+def os_info():
+	return platform.platform() + ' ' +platform.system() +' '+ platform.version() + ' ' + platform.release()
+#print(os_info())
+
+#44
+def site_packages():
+	return site.getsitepackages()
+#print(site_packages())
+
+#45
+def call_enemy_function(command):
+	return subprocess.call([*command])
+#print(call_enemy_function(['ipconfig']))
+
+#46
+def get_current_file_path_name():
+	return "Current file name : " + os.path.realpath(__file__)
+#print(get_current_file_path_name())
+
+#47
+def number_of_CPU():
+	return multiprocessing.cpu_count()
+#print(number_of_CPU())
+
+#48
+def parse_string_to_int(n):
+	return int(n)
+#print(parse_string_to_int('5'))
+
+#49
+def all_files_in_directory():
+	onlyfiles = [f for f in os.listdir(os.getcwd()) if os.path.isfile(os.path.join(os.getcwd(), f))]
+	return onlyfiles
+#print(all_files_in_directory())
+
+#50
+def cut_spaces(string):
+	return string.replace(" ", "").replace("\n", "")
+#print(cut_spaces("teg sd asdg fdas \n"))
+
+#51
+def determine_profiles(profile):
+	return cProfile.run("'"+profile+"'")
+#determine_profiles('all_files_in_directory()')
+
+#52
+def eprint(*args, **kwargs):
+	print(*args, file=sys.stderr, **kwargs)
+#eprint('abc','rga','sfsf', sep= " -- ")
+
+#53
+def environment_vars(var = None):
+	return os.environ[var] if var != None else os.environ
+#print(environment_vars('SYSTEMROOT'))
+
+#54
+def get_username():
+	return getpass.getuser()
+#print(get_username())
+
+#55
+def get_ipaddress():
+	return socket.gethostbyname(socket.gethostname())
+#print(get_ipaddress())
+
+#56
+#not working in windows((
+
+#57
+def function_time():
+	start_time = time.time()
+	for i in range(1000000):
+		i +=1
+	end_time = time.time()
+	return end_time - start_time
+#print(function_time())
+
+#58
+def sum_first_n_positive(n):
+	return n*(n + 1)/2
+#print(sum_first_n_positive(10))
+
+#59
+def feet_and_inches_to_centm(n):
+	return str(n) + " inches = " + str(n * 2.54) + " centimeters and " + str(n) + " feet = " + str(n * 30.48) + " centimetres"
+#print(feet_and_inches_to_centm(5))
+
+#60
+def hypotenuse_of_triangle(a,b):
+	return math.sqrt(a**2 + b**2)
+#print(hypotenuse_of_triangle(3,4))
+
+#61
+def convert_distance(n):
+	return str(n) + " feets: " + str(n * 12) + " inches, " + str(n * 0.3333) + " yards, " + str(n * 0.000189394) + " miles."
+#print(convert_distance(100)) 
+
+#62
+def convert_to_seconds(h = 0, m = 0, s = 0):
+	return h*60*60 + m * 60 + s
+#print(convert_to_seconds(0,3,1))
+
+#63
+def get_absolute_file_path(_file):
+	return os.path.abspath(_file)
+#print(get_absolute_file_path('AssemblyList_4_client.xml'))
+
+#64
+def get_file_info(_file):
+	return time.ctime(os.path.getmtime(_file)) + ' ' + time.ctime(os.path.getctime(_file))
+#print(get_file_info('birthday.json'))
+
+#65
+def convert_seconds_to_utc(seconds):
+	days = seconds // (3600*24)
+	seconds = seconds%(3600*24)
+	hour = seconds // 3600
+	seconds %= 3600
+	minute = seconds // 60
+	seconds %= 60
+	return str(days) + "d : " + str(hour) + "h : " + str(minute) + "m : " + str(seconds) + "s"
+#print(convert_seconds_to_utc(10000000))
+
+#66
+def body_mass_index(weight, height):
+	return round(weight/(height/100*height/100),2)
+#print(body_mass_index(100,180))
+
+#67
+def convert_from_kilopascal(n):
+	return str(n * 0.145038) + " pounds per square " + str(n * 7.50062) + " millimeter of mercury " + str(n * 0.00986923) + " atmosphere pressure"
+#print(convert_from_kilopascal(100))
+
+
+
+
+
+
+
+
+
