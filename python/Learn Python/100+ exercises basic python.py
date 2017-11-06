@@ -1,4 +1,6 @@
 from __future__ import print_function
+import glob
+from stat import S_ISREG, ST_CTIME, ST_MODE
 import cProfile
 import socket
 import ipaddress
@@ -420,11 +422,86 @@ def convert_from_kilopascal(n):
 	return str(n * 0.145038) + " pounds per square " + str(n * 7.50062) + " millimeter of mercury " + str(n * 0.00986923) + " atmosphere pressure"
 #print(convert_from_kilopascal(100))
 
+#68
+def sum_of_digits(n):
+	return sum(int(i) for i in list(str(n)))
+#print(sum_of_digits(1123))
 
+#70
+def glob_module_sort_files_by_date(_files):
+	_file = glob.glob(_files)
+	_file.sort(key=os.path.getmtime)
+	return ("\n").join(_file)
+#print(glob_module_sort_files_by_date("*.py"))
 
+#71
+def list_of_directories_sort_by_date():
+	dir_path = sys.argv[1] if len(sys.argv) == 2 else r'.'
 
+	#all entries in the directory w/ stats
+	data = (os.path.join(dir_path, fn) for fn in os.listdir(dir_path))
+	data = ((os.stat(path), path) for path in data)
 
+	# regular files, insert creation date
+	data = ((stat[ST_CTIME], path)
+	           for stat, path in data if S_ISREG(stat[ST_MODE]))
 
+	for cdate, path in sorted(data):
+	    print(time.ctime(cdate), os.path.basename(path))
 
+#list_of_directories_sort_by_date()
 
+#72
+def info_math_module(name):
+	return dir(name)
+#print(info_math_module(math.asin))
 
+#73
+def midpoint_of_line(x, y):
+	return (x + y)/2
+#print(midpoint_of_line(6,3))
+
+#75
+def copyright_info():
+	return sys.copyright
+#print(copyright_info())
+
+#76
+def sys_argv_info():
+	return str(sys.argv[0]) + " " + str(sys.argv) + "  " + str(len(sys.argv))
+#print (sys_argv_info())
+
+#77
+def info_endian_point():
+	return sys.byteorder
+#print(info_endian_point())
+
+#78
+def return_builtin_modules():
+	return ("\n").join(sorted(sys.builtin_module_names))
+#print(return_builtin_modules())
+
+#79 
+def return_size_of_obj(obj):
+	return sys.getsizeof(obj)
+#print(return_size_of_obj("1234"))
+
+#80
+def recursion_limit():
+	return sys.getrecursionlimit()
+#print(recursion_limit())
+
+#81
+def conatinate_strings(*args):
+	return "".join(args)
+#print(conatinate_strings("gaga","adada", "adaew", "dawes"))
+
+#82
+def return_sum(*args):
+	return [sum(x) for x in args] 
+#print(return_sum([10,20,30],[10,20,15],[11,2,3,5,123,51,23]))
+
+#83
+def check_certain_number_of_list(_list):
+	return True if len([x for x in _list if x <= _list[round(len(_list)/2)] ]) == len(_list) else False
+print(check_certain_number_of_list([10,4,1,3,100,23,52,31,3]))
