@@ -1,4 +1,5 @@
 from __future__ import print_function
+from hurry.filesize import size
 import glob
 from stat import S_ISREG, ST_CTIME, ST_MODE
 import cProfile
@@ -504,4 +505,70 @@ def return_sum(*args):
 #83
 def check_certain_number_of_list(_list):
 	return True if len([x for x in _list if x <= _list[round(len(_list)/2)] ]) == len(_list) else False
-print(check_certain_number_of_list([10,4,1,3,100,23,52,31,3]))
+#print(check_certain_number_of_list([10,4,1,3,100,23,52,31,3]))
+
+#84
+def check_occurence_of_char(n,string):
+	return string.count(n)
+#print(check_occurence_of_char("q", "qqqqq"))
+
+#85
+def check_is_file_or_directory(_path):
+	if os.path.isdir(_path):
+		return "is dir"
+	elif os.path.isfile(_path):
+		return "is file"
+	else:
+		return " not exits"
+#print(check_is_file_or_directory("birthday.json"))
+
+#86
+def get_ascii_code(n):
+	return ord(n)
+#print(get_ascii_code("n"))
+
+#87
+def get_size_of_file(_file):
+	return size(os.path.getsize(_file))
+#print(get_size_of_file("birthday.json"))
+
+#88
+def print_some_bullshit(x,y):
+	return "\n%d + %d = %d"%(x,y,x+y)
+#print(print_some_bullshit(1,3))
+
+#89
+def second_bullshit(n):
+	return "Is the first dat of Month" if n ==1 else " "
+#print(second_bullshit(2))
+
+#90
+#print((lambda str='print(lambda str=%r: (str %% str))()': (str % str))())
+
+#91
+def swap_two_var(a,b):
+	a, b = b, a
+	return a, b
+#print(swap_two_var(3,10))
+
+#93
+def return_id_of_obj(obj):
+	return id(obj)
+#print(return_id_of_obj(object()))
+
+#94
+x = b'Abc'
+#print(list(x))
+
+#95
+def check_if_string_is_numeric(string):
+	try:
+		int(string)
+	except (ValueError, TypeError):
+		print("Not numeric")
+	else:
+	 return True
+#print(check_if_string_is_numeric("12a"))	
+
+#96
+
