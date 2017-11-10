@@ -1,7 +1,10 @@
 from __future__ import print_function
 from hurry.filesize import size
+import numpy as np
 import glob
+import traceback
 from stat import S_ISREG, ST_CTIME, ST_MODE
+import http.client
 import cProfile
 import socket
 import ipaddress
@@ -571,4 +574,162 @@ def check_if_string_is_numeric(string):
 #print(check_if_string_is_numeric("12a"))	
 
 #96
+def print_traceback():
+	check_if_string_is_numeric("111")
+	traceback.print_stack()
+#print(print_traceback())
+
+#97
+s_var_names = sorted((set(globals().keys()) | set(__builtins__.__dict__.keys())) - set('_ names i'.split()))
+#print(s_var_names)
+
+#98 
+def system_time():
+	print(time.ctime())
+	return datetime.datetime.now()
+#print(system_time())
+
+#99
+def clear_screen():
+	return os.system('cls')
+
+#100
+def get_host_name():
+	return socket.gethostname()
+#print(get_host_name())
+
+#101
+def get_html_content(url):
+	conn = http.client.HTTPConnection(url)
+	conn.request("GET","/")
+	result = conn.getresponse()
+	return result.read()
+#print(get_html_content("akaptur.com"))
+
+#102
+def get_cmd_output():
+	subprocess.check_output("dir", shell=True, universal_newlines=True)
+
+#print(get_cmd_output())
+
+#103
+def extract_filename_from_path(_path):
+	return _path[_path.rfind("\\") + 1::]
+#print(extract_filename_from_path("C:\\scripts\\aaa.xts"))
+
+#104
+#Only for Unix
+
+#105
+#print(os.environ)
+
+#106
+for path in [ 'test.txt', 'filename', '/user/system/test.txt', '/', '' ]:
+	pass
+    #print('"%s" :' % path, os.path.splitext(path))
+
+#107
+def some_kids_use():
+	for file in [ __file__, os.path.dirname(__file__), '/', './broken_link']:
+	    print('File        :', file)
+	    print('Absolute    :', os.path.isabs(file))
+	    print('Is File?    :', os.path.isfile(file))
+	    print('Is Dir?     :', os.path.isdir(file))
+	    print('Is Link?    :', os.path.islink(file))
+	    print('Exists?     :', os.path.exists(file))
+	    print('Link Exists?:', os.path.lexists(file))
+#some_kids_use()	    
+#108
+def second_kids_use():
+	print('File         :', __file__)
+	print('Access time  :', time.ctime(os.path.getatime(__file__)))
+	print('Modified time:', time.ctime(os.path.getmtime(__file__)))
+	print('Change time  :', time.ctime(os.path.getctime(__file__)))
+	print('Size         :', os.path.getsize(__file__))
+
+#second_kids_use()
+
+#109
+def check_is_number_positive_negative_zero(n):
+	if n > 0:
+		return "Positive"
+	elif n == 0:
+		return "Zero"
+	else:
+		return "Negative"
+#print(check_is_number_positive_negative_zero(2))
+
+#110
+def use_anonymous_function(_list):
+	selection = list(filter(lambda s: (s%15==0), _list))
+	return selection
+#print(use_anonymous_function([15,30,45,2,3]))
+
+#111
+def wildcard_list_of_files(pattern):
+	return glob.glob(pattern)
+#print(wildcard_list_of_files("*.*"))
+
+#112
+def remove_first_item_from_list(_list):
+	del _list[0]
+	return _list
+#print(remove_first_item_from_list([1.23,415,12,3,42,3,512,3]))
+
+#113
+def check_if_it_number(n):
+	try:
+		int(n)
+	except (TypeError, ValueError) as e:
+		print(e)
+#print(check_if_it_number("ga3"))
+
+#114
+def filter_positive_numbers(_list):
+	return [x for x in _list if x >= 0]
+#print(filter_positive_numbers([1,-3,4,6,10,23,-77,0,234,1000,-1000]))
+
+#115
+def compute_two_list(_listone,_listtwo):
+	a = np.array(_listone)
+	b = np.array(_listtwo)
+	return a * b
+#print(compute_two_list([1,2,3],[4,3,2]))
+
+#116
+def unicode_character(char):
+	return char.encode('utf-8')
+#print(unicode_character('gasdaакфыв'))
+
+#117
+def prove_string_in_same_memory_location(str1,str2):
+	return hex(id(str1)), hex(id(str2))
+#print(prove_string_in_same_memory_location("gar","gar")) 
+
+#118
+def byte_array_from_list(_list):
+	return [bytearray(x,'utf-8') for x in _list]
+#print(byte_array_from_list(["пфв","ter","wrq"]))
+
+#119
+def string_limit_by_six(string):
+	for i in range(6,len(string),7):
+		string = string[:i] + ' ' + string[i:]
+	return string
+
+#print(string_limit_by_six("123456789012345678901234567890"))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
