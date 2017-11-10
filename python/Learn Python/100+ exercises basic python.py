@@ -711,7 +711,11 @@ def byte_array_from_list(_list):
 	return [bytearray(x,'utf-8') for x in _list]
 #print(byte_array_from_list(["пфв","ter","wrq"]))
 
+
 #119
+#print("The float with spec number %.2f" % 1.34232) 
+
+#120
 def string_limit_by_six(string):
 	for i in range(6,len(string),7):
 		string = string[:i] + ' ' + string[i:]
