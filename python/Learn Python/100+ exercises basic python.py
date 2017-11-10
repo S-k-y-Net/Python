@@ -724,6 +724,15 @@ def string_limit_by_six(string):
 #print(string_limit_by_six("123456789012345678901234567890"))
 
 
+#121
+# try:
+# 	y
+# except NameError:
+# 	print("Variable not defined")
+
+#122
+
+
 
 
 
