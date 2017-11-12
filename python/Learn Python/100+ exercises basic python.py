@@ -1,6 +1,9 @@
 from __future__ import print_function
 from hurry.filesize import size
+from inspect import getmodule
+import json
 import numpy as np
+import collections
 import glob
 import traceback
 from stat import S_ISREG, ST_CTIME, ST_MODE
@@ -731,6 +734,79 @@ def string_limit_by_six(string):
 # 	print("Variable not defined")
 
 #122
+def empty_variable_without_destryoed(n):
+	return type(n)()
+#print(empty_variable_without_destryoed([1,3,42,5]))
+
+#123
+def min_max_number(_list):
+	print(sys.maxsize)
+	return "min = " + str(min(_list)) + " max = " + str(max(_list))
+#print(min_max_number([1.3,6.2,9]))
+
+#124
+def multiple_var_have_the_same_value(n1, n2):
+	return set(list(str(n1)))&set(list(str(n2)))
+#print(multiple_var_have_the_same_value("1423","1523"))
+
+#125
+def sum_of_collections(collection):
+	return sum(collections.Counter(collection).values())
+#print(sum_of_collections([2,2,4,6,6,8,6,10,4]))
+
+#126
+def get_module(module):
+	return getmodule(module)
+#print(get_module(sys))
+
+#127
+def get_bit_lengh():
+	return (-2**63).bit_length(), (2**63).bit_length() 
+#print(get_bit_lengh())
+
+#128
+def check_if_lowercase_in_string(string):
+	return "Have lowercase" if string.upper() != string else "All letters upper"
+		
+#print(check_if_lowercase_in_string("GASDFSFG"))
+
+#129
+def add_zeroes_to_string(string):
+	return string.ljust(10, "0")
+#print(add_zeroes_to_string("gasds"))
+
+#130.1
+def double_quotes_to_display_string(string):
+	return '\"' + string + '\"'
+#print(double_quotes_to_display_string("tasdaf"))
+
+#130.2
+def double_quotes_to_display_string_2(string):
+	return json.dumps(string)
+#print(double_quotes_to_display_string_2({'cafe': 2, 'tera': 1}))  good function
+
+#131
+# var_list = ['a', 'b', 'c']
+# x, y, z = (var_list)
+# print(x, y, z)
+
+#132
+#print(os.path.expanduser('~'))
+
+#133
+#repeat 57
+
+#134
+# x, y = map(int, input().split())
+
+# print(x**y,y**x)
+
+#135
+
+
+
+
+
 
 
 
