@@ -14,6 +14,7 @@ import ipaddress
 import multiprocessing
 import site
 import struct
+import re
 import os
 import sys
 import datetime
@@ -802,6 +803,73 @@ def double_quotes_to_display_string_2(string):
 # print(x**y,y**x)
 
 #135
+# x = 30
+# print('Value of this is "{}"'.format(x))
+
+#136
+def find_files_without_directories(path):
+	return [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
+#print(find_files_without_directories("c:/scripts/"))
+
+#137
+def extract_single_key_value_from_dict(_dict):
+	(x,y), =_dict.items()
+	return x,y
+#print(extract_single_key_value_from_dict({"key":23}))
+
+#138
+def convert_true_and_false(sequence):
+	return 1 if sequence == True else 0
+#print(convert_true_and_false(False))
+
+#139
+def check_ip_address(ip_address):
+	return True if re.match("^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$", ip_address) else "Incorrect IP address"
+#print(check_ip_address("123.167.215.123"))
+
+#139.2
+def check_ip_address2(ip_address):
+	return True if socket.inet_aton(ip_address) else "Incorrect ip address"
+#print(check_ip_address2("5123.512.32.5"))
+
+#140
+def convert_decimal_to_binary(numb):
+	return format(numb, "08b")
+#print(convert_decimal_to_binary(1))
+
+#141
+def decimal_to_hex(numb):
+	return hex(numb)
+#print(decimal_to_hex(16))
+
+#142
+def system_os_info():
+	return "operation system name \n" + os.name + "\n" + "Platform name \n" + platform.system() + "\n" + "Platform release \n" + platform.release()
+#print(system_os_info())
+
+#143
+#repeat 42
+
+#144
+def check_variable(var):
+	if isinstance(var, int):
+		return "Integer"
+	elif isinstance(var, str):
+		return "String"
+	else:
+		"Cannot check type"
+#print(check_variable("1"))
+#145,146 repeat 142
+
+#147
+def if_multiply():
+	n, m = map(int, input("Enter n, m: ").split(","))
+	return True if n%m == 0 else False
+#print(if_multiply())
+
+
+	
+
 
 
 
