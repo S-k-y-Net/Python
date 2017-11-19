@@ -1,7 +1,9 @@
 from __future__ import print_function
 from hurry.filesize import size
 from inspect import getmodule
+import itertools
 import json
+import random
 import numpy as np
 import collections
 import glob
@@ -194,11 +196,11 @@ def even_number_until_237(_list):
 		if x%2 == 0 and x <= 237: 
 			print(x)
 numbers = [    
-    386, 462, 47, 418, 907, 344, 236, 375, 823, 566, 597, 978, 328, 615, 953, 345, 
-    399, 162, 758, 219, 918, 237, 412, 566, 826, 248, 866, 950, 626, 949, 687, 217, 
-    815, 67, 104, 58, 512, 24, 892, 894, 767, 553, 81, 379, 843, 831, 445, 742, 717, 
-    958,743, 527
-    ]
+	386, 462, 47, 418, 907, 344, 236, 375, 823, 566, 597, 978, 328, 615, 953, 345, 
+	399, 162, 758, 219, 918, 237, 412, 566, 826, 248, 866, 950, 626, 949, 687, 217, 
+	815, 67, 104, 58, 512, 24, 892, 894, 767, 553, 81, 379, 843, 831, 445, 742, 717, 
+	958,743, 527
+	]
 #even_number_until_237(numbers)
 
 #29
@@ -452,10 +454,10 @@ def list_of_directories_sort_by_date():
 
 	# regular files, insert creation date
 	data = ((stat[ST_CTIME], path)
-	           for stat, path in data if S_ISREG(stat[ST_MODE]))
+			   for stat, path in data if S_ISREG(stat[ST_MODE]))
 
 	for cdate, path in sorted(data):
-	    print(time.ctime(cdate), os.path.basename(path))
+		print(time.ctime(cdate), os.path.basename(path))
 
 #list_of_directories_sort_by_date()
 
@@ -630,18 +632,18 @@ def extract_filename_from_path(_path):
 #106
 for path in [ 'test.txt', 'filename', '/user/system/test.txt', '/', '' ]:
 	pass
-    #print('"%s" :' % path, os.path.splitext(path))
+	#print('"%s" :' % path, os.path.splitext(path))
 
 #107
 def some_kids_use():
 	for file in [ __file__, os.path.dirname(__file__), '/', './broken_link']:
-	    print('File        :', file)
-	    print('Absolute    :', os.path.isabs(file))
-	    print('Is File?    :', os.path.isfile(file))
-	    print('Is Dir?     :', os.path.isdir(file))
-	    print('Is Link?    :', os.path.islink(file))
-	    print('Exists?     :', os.path.exists(file))
-	    print('Link Exists?:', os.path.lexists(file))
+		print('File        :', file)
+		print('Absolute    :', os.path.isabs(file))
+		print('Is File?    :', os.path.isfile(file))
+		print('Is Dir?     :', os.path.isdir(file))
+		print('Is Link?    :', os.path.islink(file))
+		print('Exists?     :', os.path.exists(file))
+		print('Link Exists?:', os.path.lexists(file))
 #some_kids_use()	    
 #108
 def second_kids_use():
@@ -867,8 +869,63 @@ def if_multiply():
 	return True if n%m == 0 else False
 #print(if_multiply())
 
+#148
+def custom_max_min(sequence):
+	#buble sort
+	for i in range(len(sequence) - 1):
+		for j in range(len(sequence) - 1):
+			if sequence[j] > sequence[i]:
+				n = sequence[j]
+				sequence[j] = sequence[i]
+				sequence[i] = n
+	return sequence[0], sequence[len(sequence) - 1]
+#print(custom_max_min([5,4,2,8,11,23]))
 
-	
+#149
+def sum_of_cube_positive_int_below(n):
+	sum_of_all = 0
+	for i in range(n, 1, -1):
+		sum_of_all += i**3
+	return sum_of_all
+#print(sum_of_cube_positive_int_below(10))
+
+#150
+def distinct_pair_of_number_product_odd(sequence):
+	t = set(sequence)
+	_list = []
+	for i, num in enumerate(t):
+		for j, b in enumerate(t):
+			if b * num & 1 and b != num:
+				_list.append(b)
+	return set(_list)
+#print(distinct_pair_of_number_product_odd([25,23,1,2,3,6,23,10,7,47,102]))
+
+#151
+def determine_if_all_numbers_is_different(sequence):
+	return True if len(set(sequence)) == len(sequence) else False
+#print(determine_if_all_numbers_is_different([1,23,5,6,2,3,7,3,0]))    	
+
+#152
+def possible_strings_with_characters(*args):
+	_list = list(args)
+	random.shuffle(_list)
+	#return list(map(''.join, itertools.product(_list, repeat = 3) ))
+	return "".join(_list)
+#print(possible_strings_with_characters('a', 'e', 'i', 'o', 'u'))
+
+#153
+def print_only_third_nembers(_list):
+	if len(_list) <= 3:
+		print(_list)
+		return _list
+	_r_list = [x for x in range(len(_list)) if (x + 1)%3 == 0 and len(_list) > 3]
+	#print(_r_list)
+	print([_list[l] for l in _r_list])
+	#print(_list)
+	print_only_third_nembers([_list[item] for item in range(len(_list)) if item not in _r_list])
+#print_only_third_nembers([10,20,30,40,50,60,70,80,90])
+
+
 
 
 
