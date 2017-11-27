@@ -2,6 +2,8 @@ from __future__ import print_function
 from hurry.filesize import size
 from inspect import getmodule
 import itertools
+import urllib
+import bs4
 import json
 import random
 import numpy as np
@@ -1015,6 +1017,18 @@ def number_of_characters(_file):
 #print(number_of_characters("C:\\Max\\nameslist.txt"))
 
 #158
+def gooole_news_rss_titles():
+	url = "http://news.google.com/rss"
+	_title_list = []
+	Client=urllib.request.urlopen(url)
+	xml_page=Client.read()
+	Client.close()
+	
+	xml_content_from_site = bs4.BeautifulSoup(xml_page, "xml")
+	for titles in xml_content_from_site.findAll('item'):
+		_title_list.append([titles.title.text + "  " + titles.link.text + "  " + titles.pubDate.text])
+	return _title_list
+print(gooole_news_rss_titles())
 
 
 
