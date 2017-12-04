@@ -1,6 +1,9 @@
 from __future__ import print_function
 from hurry.filesize import size
 from inspect import getmodule
+import urllib.request
+import pip
+import textwrap
 import itertools
 import json
 import random
@@ -1015,6 +1018,37 @@ def number_of_characters(_file):
 #print(number_of_characters("C:\\Max\\nameslist.txt"))
 
 #158
+#def top_stories_from_google_news():
+
+#159
+def installed_packages():
+	#from stackowerflow
+	installed_packages = pip.get_installed_distributions()
+	installed_packages_list = sorted(["%s==%s" % (i.key, i.version)	for i in installed_packages])
+	return installed_packages_list
+#print(installed_packages)		
+
+#160
+def os_info_from_script():
+	return sys.platform
+#print(os_info_from_script())
+
+#161
+def compare_sum_of_three_elements_of_arrays_with_target(target):
+	X = [10, 20, 20, 20]
+	Y = [10, 20, 30, 40]
+	Z = [10, 30, 40, 20]
+	result = ()
+	for i in X:
+		for j in Y:
+			for n in Z:
+				if i + j + n == target:
+					result += (i, j, n),
+	return result
+#print(compare_sum_of_three_elements_of_arrays_with_target(70))
+
+#162
+
 
 
 
