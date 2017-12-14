@@ -1048,12 +1048,60 @@ def compare_sum_of_three_elements_of_arrays_with_target(target):
 #print(compare_sum_of_three_elements_of_arrays_with_target(70))
 
 #162
+def permute(nums): #from w3practice
+  result_perms = [[]]
+  for n in nums:
+    new_perms = []
+    for perm in result_perms:
+      for i in range(len(perm)+1):
+        new_perms.append(perm[:i] + [n] + perm[i:])
+        result_perms = new_perms
+  return result_perms
+
+# my_nums = [1,2,3,4,6]
+# print("Original Cofllection: ",my_nums)
+# print("Collection of distinct numbers:\n",permute(my_nums))
 
 
+#163
+def letter_combinations(digits): #from w3resorce
+    if digits == "":
+        return []
+    string_maps = {
+        "1": "abc",
+        "2": "def",
+        "3": "ghi",
+        "4": "jkl",
+        "5": "mno",
+        "6": "pqrs",
+        "7": "tuv",
+        "8": "wxy",
+        "9": "z"
+    }
+    result = [""]
+    for num in digits:
+        temp = []
+        for an in result:
+            for char in string_maps[num]:
+                temp.append(an + char)
+        result = temp
+    return result
+#164    
+def add_without_plus_operator(a, b):#from w3resorce
+    while b != 0:
+        data = a & b
+        a = a ^ b
+        b = data << 1
+    return a
 
+#165
+#print(5 * 2 + 1) 
 
+#166
+#duplicate
 
-
+#167
+#duplicate
 
 
 
