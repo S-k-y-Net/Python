@@ -46,12 +46,73 @@ def swap_two_first_characters(_str):
 
 #6. Write a Python program to add 'ing' at the end of a given string (length should be at least 3). If the given string already ends with 'ing' then add 'ly' instead. If the string length of the given string is less than 3, leave it unchanged.
 def add_ing_and_ly_to_str(_str):
-	if _str[len(_str) - 3::] == 'ing' and len(_str) > 3:
-		_str = _str + 'ing'
-	elif len(_str) > 3:
+	if _str[len(_str) - 3::] == 'ing' and len(_str) >= 3:
 		_str = _str + 'ly'
+	elif len(_str) >= 3:
+		_str = _str + 'ing'
 	else:
 		return _str
 	return _str
-#print(add_ing_and_ly_to_str('gng'))
+#print(add_ing_and_ly_to_str('gn'))
+
+#7. Write a Python program to find the first appearance of the substring 'not' and 'poor' from a given string, if 'bad' follows the 'poor', replace the whole 'not'...'poor' substring with 'good'. Return the resulting string.
+def replace_string(_str):
+	if 'not' in _str:
+		if 'poor' in _str:
+			index = _str.find('poor')
+			_new_str = _str[index:]
+			if 'bad' in _new_str:
+				index2 = _str.find('not')
+				return _str[:index2:] + "good!"
+			else:
+				return _str
+	return _str
+#print(replace_string('The lyrics is not that poor bad!'))
+
+#8. Write a Python function that takes a list of words and returns the length of the longest one.
+def longest_word(_list):
+	max_len = 0
+	for i in _list:
+		if len(i) > max_len:
+			max_len = len(i)
+	return max_len
+#Sprint(longest_word(['gasd', 'asgasdgasdgasdgqwew','gaa', 'qwerqs']))
+
+#9. Write a Python program to remove the nth index character from a nonempty string.
+def remove_characters(_str, n):
+	return _str[n:]
+#print(remove_characters('123456789ffffffff',6))
+
+#10. Write a Python program to change a given string to a new string where the first and last chars have been exchanged
+def change_string(_str):
+	return '$' + _str[1:len(_str) - 1:] + '$'
+#print(change_string('calabok'))
+
+#11. Write a Python program to remove the characters which have odd index values of a given string
+def without_odd_index(_str):
+	return _str[1::2]
+#print(without_odd_index('1234567890'))
+
+#12. Write a Python program to count the occurrences of each word in a given sentence
+def count_words(_sentense):
+	_dict = {}
+	_list_words = _sentense.split(' ')
+	for i in _list_words:
+		if i in _dict.keys():
+			_dict[i] += 1
+		else:
+			_dict[i] = 1
+	return _dict
+#print(count_words('Write a Python script that takes input from the user and displays that input back in upper and lower cases'))
+
+#13. Write a Python script that takes input from the user and displays that input back in upper and lower cases
+def upper_and_lower():
+	print('Print string: ')
+	_str = raw_input()
+	return "Upper: " + _str.upper() + "\n Lower: " + _str.lower()
+
+#print(upper_and_lower())
+
+
+
 
