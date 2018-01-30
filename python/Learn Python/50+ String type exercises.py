@@ -113,6 +113,23 @@ def upper_and_lower():
 
 #print(upper_and_lower())
 
+#14.  Write a Python program that accepts a comma separated sequence of words as input and prints the unique words in sorted form (alphanumerically)
+def sorted_form(_str):
+	_list_words = _str.split(',')
+	return ",".join(sorted(list(set(_list_words))))
+#print(sorted_form('red, white, black, red, green, black'))
 
+#15. Write a Python function to create the HTML string with tags around the word(s)
+def add_tags(tag, word):
+	return "<%s>%s" % (tag, word, tag)
+#print(add_tags('i', 'Python'))
+#print(add_tags('b', 'Python Tutorial'))
 
+#16 duplicate
 
+#17. Write a Python function to get a string made of 4 copies of the last two characters of a specified string (length must be at least 2)
+def four_copies_last_two_chars(_str):
+	return _str + _str[-2::] + _str[-2::] + _str[-2::] if len(_str) >= 2 else 'Not enough long string'
+#print(four_copies_last_two_chars('a'))
+
+#18. Write a Python function to get a string made of its first three characters of a specified string. If the length of the string is less than 3 then return the original string.
