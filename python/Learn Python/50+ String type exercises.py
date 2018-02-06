@@ -1,4 +1,5 @@
 import os
+import re
 
 #1. Write a Python program to calculate the length of a string
 def string_length(_str):
@@ -133,3 +134,42 @@ def four_copies_last_two_chars(_str):
 #print(four_copies_last_two_chars('a'))
 
 #18. Write a Python function to get a string made of its first three characters of a specified string. If the length of the string is less than 3 then return the original string.
+def return_first_three_chars(_str):
+	return _str[:3:] if len(_str) >= 3 else _str
+#print(return_first_three_chars('garrit'))
+
+#19. Write a Python program to get the last part of a string before a specified character.
+def return_substring(_str, char):
+	return _str[:_str.find(char):]
+#print(return_substring('https://www.w3resource.com/python-exercises','1'))
+
+#20. Write a Python function to reverses a string if it's length is a multiple of 4
+def reverse_string_if_multiple_four(_str):
+	return _str[::-1] if (len(_str) % 4 == 0) else _str
+#print(reverse_string_if_multiple_four("51235124"))
+
+#21. Write a Python function to convert a given string to all uppercase if it contains at least 2 uppercase characters in the first 4 characters.
+def to_upper_if_have_two_upper_in_first_four_chars(_str):
+	j = 0
+	for i in _str[:4:]:
+		if i.upper() == i:
+			j += 1
+	if j >= 2:
+		return _str.upper()
+	else:
+		return _str
+#print(to_upper_if_have_two_upper_in_first_four_chars("AFgggas"))
+
+#22. Write a Python program to sort a string lexicographically
+def lexicographi_sort(s):
+    return sorted(s.split(), key=str.upper)
+#print(lexicographi_sort("gasd hwe awe yqwe"))
+
+#23. Write a Python program to remove a newline in Python
+def remove_newline(_str):
+	_str = _str.replace('\r', '').replace('\n', '')
+	return _str
+#print(remove_newline("gadsag\n\n \r\n\n\r \n\nhae\n"))
+#print("gadsag\n \r\n\n\r \n\n\nhae\n")
+
+
