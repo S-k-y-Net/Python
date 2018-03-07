@@ -1,5 +1,6 @@
 import os
 import re
+import textwrap
 
 #1. Write a Python program to calculate the length of a string
 def string_length(_str):
@@ -172,4 +173,90 @@ def remove_newline(_str):
 #print(remove_newline("gadsag\n\n \r\n\n\r \n\nhae\n"))
 #print("gadsag\n \r\n\n\r \n\n\nhae\n")
 
+#24. Write a Python program to check whether a string starts with specified characters
+def index_of_character(_str,char):
+	return _str.find(char) + 1
+#print(index_of_character('gadag','d'))
 
+#25. Write a Python program to create a Caesar encryption
+def caesar_cipher(real_text, step):
+	_alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+	_alphabet_letter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+	new_alphabet = _alphabet[step::] + _alphabet[:step:]  
+	new_alphabet_letter = _alphabet_letter[step::] + _alphabet_letter[:step:]  
+	_new_str = ''
+	index = 0
+	for i in real_text:
+		if i in _alphabet:
+			_new_str += new_alphabet[_alphabet.index(i,index)]
+			index += 1
+		if i in _alphabet_letter:
+			_new_str += new_alphabet_letter[_alphabet_letter.index(i)]
+			index += 1
+		if i not in _alphabet and i not in _alphabet_letter:
+			_new_str += i
+	return _new_str
+#print(caesar_cipher('Good news, come be a pip!',8))
+
+#26. Write a Python program to display formatted text (width=50) as output
+def formatted_text_in_output(input_text):
+	count = 0
+	output = ''
+	for i in input_text.split():
+		count += len(i + ' ') 
+		if count > 50:
+			count = 0
+			count += len(i + ' ') 
+			output += "\n"
+		output += i + ' '
+	#print(output) 
+	return output
+	print(textwrap.fill(input_text, width=50)) #from solution
+#formatted_text_in_output('At this point you effectively have two parse trees: one rooted at the BeautifulSoup object you used to parse the document, and one rooted at the tag that was extracted. You can go on to call extract on a child of the element you extracted:')
+
+#27. Write a Python program to remove existing indentation from all of the lines in a given text. 
+def remove_indentation(input_text, indentation):
+	return input_text.replace(indentation, '')
+#Wrint(remove_indentation('Write a Python program to remove existing indentation from all of the lines in a given text', 'all'))
+
+#28. Write a Python program to add a prefix text to all of the lines in a string.
+def add_prefix(input_text, prefix):
+	text = formatted_text_in_output(input_text)
+	output = prefix
+	for i in text:
+		output += i
+		if i == '\n':
+			output += prefix
+	return output
+
+# print(add_prefix(
+# '''Python is a widely used high-level, general-purpose, interpreted,
+#     dynamic programming language. Its design philosophy emphasizes
+#     code readability, and its syntax allows programmers to express
+#     concepts in fewer lines of code than possible in languages such
+#     as C++ or Java.''', " >"))
+
+#29 Write a Python program to set the indentation of the first line
+def set_indentation_to_first_line(_str):
+	return textwrap.fill(_str, initial_indent = '    ', subsequent_indent = ' ' * 4, width =80)
+
+# print(set_indentation_to_first_line('''Python is a widely used high-level, general-purpose, interpreted,
+# dynamic programming language. Its design philosophy emphasizes
+# code readability, and its syntax allows programmers to express
+# concepts in fewer lines of code than possible in languages such
+# as C++ or Java.'''))
+# print('''Python is a widely used high-level, general-purpose, interpreted,
+# dynamic programming language. Its design philosophy emphasizes
+# code readability, and its syntax allows programmers to express
+# concepts in fewer lines of code than possible in languages such
+# as C++ or Java.''')
+
+#30  Write a Python program to print the following floating numbers upto 2 decimal places
+def two_decimal_places(float_number):
+	return float_number[:float_number.find('.') + 3:]
+#print(two_decimal_places('7.912'))
+
+#31. Write a Python program to print the following floating numbers upto 2 decimal places with a sign.
+def two_decimal_numbers_with_sign(float_number):
+	return "{:+.2f}".format(float(float_number))
+#print(two_decimal_numbers_with_sign("-3.1999"))
