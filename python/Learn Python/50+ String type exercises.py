@@ -525,6 +525,3 @@ def two_decimal_places(float_number):
 def two_decimal_numbers_with_sign(float_number):
 	return "{:+.2f}".format(float(float_number))
 #print(two_decimal_numbers_with_sign("-3.1999"))
-=======
->>>>>>> b543269498fb72602f458465463990d1809de486
->>>>>>> 6001cb5396ae6ce44a324ede49dcbbf00f7bdf40
