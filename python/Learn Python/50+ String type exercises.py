@@ -1,8 +1,8 @@
-<<<<<<< HEAD
 import os
 import re
 import textwrap
-
+from string import maketrans
+# -*- coding: utf-8 -*-
 #1. Write a Python program to calculate the length of a string
 def string_length(_str):
 	count = 0
@@ -261,7 +261,7 @@ def two_decimal_places(float_number):
 def two_decimal_numbers_with_sign(float_number):
 	return "{:+.2f}".format(float(float_number))
 #print(two_decimal_numbers_with_sign("-3.1999"))
-=======
+
 import os
 import re
 import textwrap
@@ -442,7 +442,7 @@ def index_of_character(_str,char):
 	return _str.find(char) + 1
 #print(index_of_character('gadag','d'))
 
-<<<<<<< HEAD
+
 #25. Write a Python program to create a Caesar encryption
 def caesar_cipher(real_text, step):
 	_alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
@@ -525,3 +525,126 @@ def two_decimal_places(float_number):
 def two_decimal_numbers_with_sign(float_number):
 	return "{:+.2f}".format(float(float_number))
 #print(two_decimal_numbers_with_sign("-3.1999"))
+ 
+#32 Write a Python program to print the following floating numbers with no decimal places
+def no_decimal_numbers(float_number):
+	return "{:+.0f}".format(float(float_number))
+#print(no_decimal_numbers("-3.111"))
+
+#33. Write a Python program to print the following integers with zeros on the left of specified width
+def zeros_on_left(integer, width):
+	return "{}{}".format(width*"0", integer)
+#print(zeros_on_left(3,6))
+
+#34. Write a Python program to print the following integers with '*' on the right of specified width.
+def asterisk_on_left(integer, width):
+	return "{}{}".format(width*"*", integer)
+#print(asterisk_on_left(3,1))
+
+#35. Write a Python program to display a number with a comma separator
+def display_with_comma_separated(numb):
+	return "{:,}".format(numb)
+#print(display_with_comma_separated(42551232))
+
+#36. Write a Python program to format a number with a percentage
+def format_with_percentage(numb):
+	return "{:.2%}".format(numb)
+#print(format_with_percentage(1.2))
+
+#37 Write a Python program to display a number in left, right and center aligned of width 10
+def aligned_by_width(numb):
+	return "{:<10d}".format(numb), "{:10d}".format(numb), "{:^10d}".format(numb)
+#print(aligned_by_width(22))
+
+#38. Write a Python program to count occurrences of a substring in a string
+def occurences_of_substring(string, substring):
+	return string.count(substring)
+#print(occurences_of_substring("agadfsdaaa", "aa"))
+
+#39.Write a Python program to reverse a string
+def reverse_string(string):
+	return string[::-1]
+#print(reverse_string("afghjk"))
+
+#40. Write a Python program to reverse words in a string.
+def reverse_words(sentence):
+	return ' '.join(sentence.split()[::-1]) 
+#print(reverse_words("gas and iol and bomb"))
+
+#41 Write a Python program to strip a set of characters from a string
+def strip_from_string(string, chars_for_strip):
+	return string.replace(chars_for_strip, "")
+#print(strip_from_string("Gas has oil and mazut", "a"))
+
+#42. Write apython program to count repeated characters in a string
+def count_repeated_chars(string):
+	_dict = {}
+	for x in string:
+		_dict[x] = string.count(x)
+	return _dict
+#print(count_repeated_chars('aaaa'))
+
+#43.  
+def print_special_chars(_str):
+	return str(_str) + u'\u00b2' + "  " + str(_str) + u'\u00b3'
+#print(print_special_chars('12311'))
+
+#44. Write a Python program to print the index of the character in a string
+def return_index_of_chars(_str):
+	_list = []
+	for i, j in enumerate(_str):
+		_list.append("Current char is " + j + " at position " + str(i))
+	return _list
+#print(return_index_of_chars("sads"))
+
+#45 Write a Python program to check if a string contains all letters of the alphabet
+def check_if_all_chars_string_si_alphabet(_str):
+	_alphabet_letter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+	for i in _str:
+		if i not in _alphabet_letter:
+			b = 1
+		else:
+			b = 0
+	return True if b == 0 else False
+#print(check_if_all_chars_string_si_alphabet("gasd"))
+
+#46 Write a Python program to convert a string in a list
+def str_to_list(_str):
+	return list(_str)
+#print(str_to_list("Gasd"))
+
+#47 Write a Python program to lowercase first n characters in a string.
+def to_lower_first_n(_str, n):
+	return _str[:n:].upper()+_str[n+1::]
+#print(to_lower_first_n("gadg", 4))
+
+#48 Write a Python program to swap comma and dot in a string.
+def swap_comma_with_dot(_str):
+	_new_str = ""
+	for i in _str:
+		if i == '.':
+			print(i)
+			i = ","
+		elif i == ",":
+			i = "."
+		_new_str += i
+	return _new_str
+#print(swap_comma_with_dot("111,44.3"))
+
+#49 Write a Python program to count and display the vowels of a given text.
+def vowels_count(_str):
+	vowels = ["a", "e", " u", "i", "o", "y"]
+	count = 0
+	for i in _str:
+		if i.lower() in vowels:
+			count += 1
+	return count
+#print(vowels_count("gaer"))
+
+#50 Write a Python program to split a string on the last occurrence of the delimiter
+def split_by_last_delimeter(_str, delimiter):
+	index = _str.rfind(delimiter)
+	print(index)
+	return _str[:index:] + " " + _str[index::]
+#print(split_by_last_delimeter("and more andand more", "and"))
+
